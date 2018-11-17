@@ -64,10 +64,15 @@ public class Option extends JFrame {
 		lblLoggedInSuccessfully.setBounds(166, 26, 217, 46);
 		panel_1.add(lblLoggedInSuccessfully);
 		
+		JButton btnAddTeacher = new JButton("Add Teacher");
+		btnAddTeacher.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnAddTeacher.setBounds(134, 105, 281, 35);
+		panel_1.add(btnAddTeacher);
+		
 		JButton btnGenerateTimetable = new JButton("Generate TimeTable");
 		btnGenerateTimetable.setBackground(UIManager.getColor("Button.background"));
-		btnGenerateTimetable.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		btnGenerateTimetable.setBounds(134, 133, 281, 35);
+		btnGenerateTimetable.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnGenerateTimetable.setBounds(134, 161, 281, 35);
 		panel_1.add(btnGenerateTimetable);
 		
 		JButton btnAllotSubstitution = new JButton("Allot Substitution");
@@ -79,11 +84,12 @@ public class Option extends JFrame {
 			}
 		});
 		btnAllotSubstitution.setBackground(UIManager.getColor("Button.background"));
-		btnAllotSubstitution.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		btnAllotSubstitution.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAllotSubstitution.setBounds(134, 221, 281, 35);
 		panel_1.add(btnAllotSubstitution);
 		
+
+		
 		
 	}
-
 }

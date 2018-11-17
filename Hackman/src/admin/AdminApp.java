@@ -21,6 +21,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminApp extends JFrame {
 
@@ -71,17 +73,17 @@ public class AdminApp extends JFrame {
 		lblWelcome.setBounds(197, 10, 154, 43);
 		panel_1.add(lblWelcome);
 		lblWelcome.setBackground(Color.WHITE);
-		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 35));
+		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblUsername.setForeground(Color.WHITE);
 		lblUsername.setBounds(67, 78, 108, 29);
 		panel_1.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setForeground(Color.WHITE);
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblPassword.setBounds(67, 154, 108, 37);
 		panel_1.add(lblPassword);
 		
@@ -95,6 +97,10 @@ public class AdminApp extends JFrame {
 		panel_1.add(pwdPassword);
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -117,7 +123,7 @@ public class AdminApp extends JFrame {
 				System.out.print(e);
 				}
 			}});
-		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		btnSubmit.setBounds(178, 250, 133, 37);
 		panel_1.add(btnSubmit);
 	
