@@ -164,7 +164,7 @@ public class AddTeacher extends JFrame {
                 stmt.executeUpdate(sql);
                 String sql1="create table id"+IDEnter.getText()+"(day int, p1 varchar(20), p2 varchar(20),p3 varchar(20),p4 varchar(20),p5 varchar(20),p6 varchar(20),p7 varchar(20))";
                 stmt.executeUpdate(sql1);
-                for(int i=1;i<=7;i++) {
+                for(int i=1;i<=5;i++) {
                 	String sql2="insert into id"+IDEnter.getText()+"(day,p1,p2,p3,p4,p5,p6,p7) values('"+i+"','f','f','f','f','f','f','f')";
                 	stmt.executeUpdate(sql2);
                 }

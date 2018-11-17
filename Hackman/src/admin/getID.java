@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class getID extends JFrame {
 
@@ -67,6 +69,12 @@ public class getID extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnAllotSubstitution = new JButton("Allot Substitution");
+		btnAllotSubstitution.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 		btnAllotSubstitution.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAllotSubstitution.setBounds(180, 225, 196, 33);
 		panel_1.add(btnAllotSubstitution);
