@@ -65,6 +65,13 @@ public class Option extends JFrame {
 		panel_1.add(lblLoggedInSuccessfully);
 		
 		JButton btnAddTeacher = new JButton("Add Teacher");
+		btnAddTeacher.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				AddTeacher add=new AddTeacher();
+				add.setVisible(true);
+			}
+		});
 		btnAddTeacher.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAddTeacher.setBounds(134, 105, 281, 35);
 		panel_1.add(btnAddTeacher);

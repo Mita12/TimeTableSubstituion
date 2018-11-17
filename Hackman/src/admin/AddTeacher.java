@@ -8,11 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class AddTeacher extends JFrame {
 
@@ -20,6 +28,7 @@ public class AddTeacher extends JFrame {
 	private JTextField IDEnter;
 	private JTextField nameEnter;
 	private JTextField deptEnter;
+	private int threea=0,threeb=0,fivea=0,fiveb=0;
 
 	/**
 	 * Launch the application.
@@ -99,28 +108,95 @@ public class AddTeacher extends JFrame {
 		deptEnter.setColumns(10);
 		
 		JCheckBox threeA = new JCheckBox("3A");
+		threeA.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				threea=1;
+				
+			}
+		});
 		threeA.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		threeA.setBounds(80, 273, 56, 21);
 		panel_1.add(threeA);
 		
 		JCheckBox threeB = new JCheckBox("3B");
+		threeB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				threeb=1;
+			}
+		});
 		threeB.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		threeB.setBounds(181, 273, 47, 21);
 		panel_1.add(threeB);
 		
 		JCheckBox fiveA = new JCheckBox("5A");
+		fiveA.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				fivea=1;
+			}
+		});
 		fiveA.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		fiveA.setBounds(269, 273, 47, 21);
 		panel_1.add(fiveA);
 		
 		JCheckBox fiveB = new JCheckBox("5B");
+		fiveB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				fiveb=1;
+			}
+		});
 		fiveB.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		fiveB.setBounds(350, 273, 47, 21);
 		panel_1.add(fiveB);
 		
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/admin","root","");
+                Statement stmt=con.createStatement();
+                String sql="insert into staff(id,name,dept,3a,3b,5a,5b) values('"+IDEnter.getText()+"','"+nameEnter.getText()+"','"+deptEnter.getText()+"','"+threea+"','"+threeb+"','"+fivea+"','"+fiveb+"')";
+                stmt.executeUpdate(sql);
+                String sql1="create table id"+IDEnter.getText()+"(day int, p1 varchar(20), p2 varchar(20),p3 varchar(20),p4 varchar(20),p5 varchar(20),p6 varchar(20),p7 varchar(20))";
+                stmt.executeUpdate(sql1);
+                for(int i=1;i<=7;i++) {
+                	String sql2="insert into id"+IDEnter.getText()+"(day,p1,p2,p3,p4,p5,p6,p7) values('"+i+"','f','f','f','f','f','f','f')";
+                	stmt.executeUpdate(sql2);
+                }
+                con.close();
+                threea=0;
+                threeb=0;
+                fivea=0;
+                fiveb=0;
+                AddTeacher add=new AddTeacher();
+                add.setVisible(true);
+                
+				}
+			catch(Exception e)
+				{
+				System.out.print(e);
+				}
+			}});
+			
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		btnSubmit.setBounds(181, 311, 130, 34);
+		btnSubmit.setBounds(98, 311, 130, 34);
 		panel_1.add(btnSubmit);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Option op=new Option();
+				op.setVisible(true);
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		btnBack.setBounds(251, 311, 130, 34);
+		panel_1.add(btnBack);
 	}
 }
