@@ -1,6 +1,7 @@
 package admin;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,12 +9,18 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.*;
 
 public class AdminApp extends JFrame {
 
@@ -91,12 +98,27 @@ public class AdminApp extends JFrame {
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/admin","root","");
+                Statement stmt=con.createStatement();
+                String sql="Select * from login where username='"+user.getText()+"' and password='"+pwdPassword.getText().toString()+"'";
+                ResultSet rs=stmt.executeQuery(sql);
+            	if(rs.next()) {
 				Option op=new Option();
 				op.setVisible(true);
-			}
-		});
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Incorrect username and password...try again");
+					con.close();
+				}
+			}catch(Exception e)
+				{
+				System.out.print(e);
+				}
+			}});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSubmit.setBounds(178, 250, 133, 37);
 		panel_1.add(btnSubmit);
-	}
-}
+	
+	}}
